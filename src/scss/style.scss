@@ -1,0 +1,13 @@
+/*-------- Fonts --------*/
+$font-r: "AvertaCY-Regular";
+$font-sb: "AvertaCY-Semibold";
+$font-b: "AvertaCY-Bold";
+
+/*-------- Colors --------*/
+$blue: #8CCBD1;
+$beige: #FFE8DB;
+$black: #423F3C;
+$beige: #F9EDCA;
+
+@import './reset.scss';
+@import './components/components.scss';
