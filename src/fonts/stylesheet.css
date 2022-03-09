@@ -17,10 +17,10 @@
 }
 
 @font-face {
-    font-family: 'AvertaCY-Semibold';
-    src: url('subset-AvertaCY-Semibold.woff2') format('woff2'),
-        url('subset-AvertaCY-Semibold.ttf') format('truetype');
-    font-weight: 600;
+    font-family: 'ArcadeClassic';
+    src: url('subset-ArcadeClassic.woff2') format('woff2'),
+        url('subset-ArcadeClassic.ttf') format('truetype');
+    font-weight: normal;
     font-style: normal;
     font-display: swap;
 }

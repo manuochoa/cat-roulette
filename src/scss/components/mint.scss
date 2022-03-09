@@ -1,0 +1,125 @@
+/*-------- Mint --------*/
+
+.mint {
+    display: flex;
+    align-items: center;
+    padding-bottom: 80px;
+
+    &__column:nth-child(1) {
+        width: 332px;
+    }
+
+    &__column:nth-child(2) {
+        width: 71%;
+        padding-left: 12.8%;
+    }
+
+    &__title {
+        max-width: 100%;
+        pointer-events: none;
+        user-select: none;
+    }
+
+    &__count {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 44px;
+    }
+
+    &__count-item {
+        font-family: $font-arcade;
+        font-size: 48px;
+    }
+
+    &__count-item:nth-child(1) {
+        display: flex;
+        align-items: center;
+
+        color: #FFCE58;
+    }
+
+    &__count-item:nth-child(2){
+        margin-left: 5px;
+    }
+
+    &__count-item:nth-child(2):before {
+        content: "/";
+        margin-right: 5px;
+        font-family: inherit;
+        font-weight: 700;
+    } 
+
+    &__text {
+        margin-top: 6px;
+        color: #000;
+    }
+
+    &__text--center {
+        text-align: center;
+    }
+
+    &__button {
+        width: 100%;
+        margin-top: 32px;
+    }
+
+    &__roulette {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+
+    &__roulette-background {
+        width: 100%;
+        z-index: 2;
+    }
+
+    &__roulette-image {
+        width: 43%;
+        position: absolute;
+    }
+
+    &__roulette-ball {
+        width: 7.7%;
+
+        position: absolute;
+        bottom: 24%;
+        right: 29.5%;
+        
+        z-index: 2;
+    }
+}
+
+@media (max-width: 989px) {
+
+    .mint {
+        flex-direction: column-reverse;
+
+        &__column:nth-child(n) {
+            width: 100%;
+        }
+
+        &__column:nth-child(2) {
+            max-width: 600px;
+            padding-left: 0;
+        }
+
+        &__column:nth-child(1) {
+            margin-top: 30px;
+        }
+
+        &__title {
+            margin: 0 auto;
+            display: block;
+        }
+    }
+}
+
+@media (max-width: 619px) {
+
+    .mint {
+        padding-bottom: 50px;
+    }
+}

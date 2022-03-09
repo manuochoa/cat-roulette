@@ -5,52 +5,64 @@
     align-items: center;
     justify-content: center;
 
-    height: 56px;
-    padding: 0 20px;
+    height: 48px;
+    padding: 0 37px;
 
-    border-radius: 8px;
-    border: 2px solid transparent;
+    position: relative;
 
-    font-family: $font-b;
-    font-size: 14px;
-    color: #fff;
+    font-family: $font-arcade;
+    font-size: 20px;
+    color: $black;
 
-    background-color: $blue;
+    background: #FFFFFF;
+    border: 1px solid #F4F5F9;
+    text-transform: uppercase;
 
     transition: color 0.2s cubic-bezier(0.19, 1, 0.22, 1), background-color 0.2s cubic-bezier(0.19, 1, 0.22, 1), border-color 0.2s cubic-bezier(0.19, 1, 0.22, 1);
 
     &:hover {
-        background-color: transparent;
-        border-color: $blue;
-        color: $black;
+        text-decoration: underline;
+    }
+
+    &:after {
+        content: "";
+        width: calc(100% + 2px);
+        height: 4px;
+
+        position: absolute;
+        top: calc(100% + 1px);
+        left: -1px;
+
+        background-color: #DCDFEB;
     }
 }
 
 .button {
 
-    &--header {
-        padding: 0 46px;
-
-        background-color: $beige;
-
-        color: $black;
-        text-transform: uppercase;
+    &--mint {
+        background: #D74B4A;
+        border-color: #BA4A40;
     }
 
-    &--header:hover {
-        border-color: $beige;
+    &--mint:after {
+        background-color: #BA4A40;
+    }
+
+    &--mint &__icon {
+        max-width: 80%;
+    }
+
+    &--mint:hover {
+        background: #e95f5f;
+        border-color: #d46359;
     }
 }
 
-.button {
+@media (max-width: 479px) {
 
-    &--transparent {
-        background-color: transparent;
-        color: $black;
-    }
-
-    &--transparent:hover {
-        border-color: $blue;
-        color: $blue;
+    .button {
+        height: 38px;
+        padding: 0 20px;
+        font-size: 18px;
     }
 }

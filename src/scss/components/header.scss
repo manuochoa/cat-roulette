@@ -1,11 +1,16 @@
 /*-------- Header --------*/
 
 .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 20px;
+    padding-bottom: 12px;
+}
 
-    &__wrapper {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: 120px;
+@media (max-width: 479px) {
+
+    .header {
+        padding-bottom: 20px;
     }
 }

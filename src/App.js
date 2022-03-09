@@ -1,16 +1,12 @@
 import Header from './components/Header';
-import Panel from './components/Panel';
-import Proposals from './components/Proposals/Proposals';
+import Mint from './components/Mint';
 
 export default function App() {
 
     return (
         <>
             <Header />
-            <main className="main container">
-                <Panel />
-                <Proposals />
-            </main>
+            <Mint />
         </>
     );
 }
