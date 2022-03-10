@@ -74,12 +74,15 @@
 
     &__roulette-wrapper {
         width: 100%;
-        position: relative;
-        z-index: 2;
+        height: 100%;
+        
+        position: absolute;
+        z-index: 3;
     }
 
     &__roulette-background {
         width: 100%;
+        z-index: 1;
     }
 
     &__roulette-image {
@@ -93,8 +96,6 @@
         position: absolute;
         bottom: 24%;
         right: 29.5%;
-        
-        z-index: 2;
     }
 }
 

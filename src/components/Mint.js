@@ -19,12 +19,13 @@ export default function Mint() {
         fee: "1 x 0.25"
     });
     const [rotating, setRotating] = useState(false);
-    const rouletteElement = useRef(null);
-    // const angle = useRef(0);
+    const ballElement = useRef(null);
+    const rouletteBackground = useRef(null);
+    const angle = useRef(0);
 
     function handleMint() {
         if (rotating) return;
-        // angle.current += (360) + 2880;
+        angle.current += (Math.random() * 360) + 2880;
         setRotating(true);
 
         gsap.timeline({
@@ -33,14 +34,16 @@ export default function Mint() {
                 ease: "cubic-bezier(.5,.1,.15,1)"
             },
             onComplete: () => {
-                gsap.set(rouletteElement.current, {
+                gsap.set(rouletteBackground.current, {
                     clearProps: "all"
                 });
                 setRotating(false);
             }
-        }).to(rouletteElement.current, {
+        }).to(ballElement.current, {
+            rotateZ: angle.current
+        }, 0).to(rouletteBackground.current, {
             rotateZ: 3240
-        });
+        }, 0);
     }
 
     return (
@@ -61,10 +64,10 @@ export default function Mint() {
             </div>
             <div className="mint__column">
                 <div className="mint__roulette">
-                    <div className="mint__roulette-wrapper" ref={rouletteElement}>
-                        <img src={background} alt="Roulette" className="mint__roulette-background" />
+                    <div className="mint__roulette-wrapper" ref={ballElement}>
                         <img src={ball} alt="Ball" className="mint__roulette-ball" />
                     </div>
+                    <img src={background} alt="Roulette" className="mint__roulette-background" ref={rouletteBackground} />
                     <img src={token} alt="Token" className="mint__roulette-image" />
                 </div>
             </div>
