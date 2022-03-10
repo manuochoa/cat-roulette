@@ -18,11 +18,15 @@ export default function Mint() {
         value: "0.25 ETH",
         fee: "1 x 0.25"
     });
+    const [rotating, setRotating] = useState(false);
     const rouletteElement = useRef(null);
     // const angle = useRef(0);
 
     function handleMint() {
+        if (rotating) return;
         // angle.current += (360) + 2880;
+        setRotating(true);
+
         gsap.timeline({
             defaults: {
                 duration: 8,
@@ -31,7 +35,8 @@ export default function Mint() {
             onComplete: () => {
                 gsap.set(rouletteElement.current, {
                     clearProps: "all"
-                })
+                });
+                setRotating(false);
             }
         }).to(rouletteElement.current, {
             rotateZ: 3240

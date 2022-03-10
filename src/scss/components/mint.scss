@@ -96,22 +96,6 @@
         
         z-index: 2;
     }
-
-    &__roulette.active {
-        animation-name: spin;
-        animation-duration: 8s;
-        animation-timing-function: cubic-bezier(0.005, 0.001, 1, 1);
-    }
-}
-
-@keyframes spin {
-    0% {
-        transform: rotateZ(0deg);
-    }
-
-    100% {
-        transform: rotateZ(980deg);
-    }
 }
 
 @media (max-width: 989px) {
