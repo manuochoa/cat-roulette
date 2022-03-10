@@ -12,6 +12,7 @@
     &__column:nth-child(2) {
         width: 71%;
         padding-left: 12.8%;
+        overflow: hidden;
     }
 
     &__title {
@@ -71,13 +72,18 @@
         position: relative;
     }
 
-    &__roulette-background {
+    &__roulette-wrapper {
         width: 100%;
+        position: relative;
         z-index: 2;
     }
 
+    &__roulette-background {
+        width: 100%;
+    }
+
     &__roulette-image {
-        width: 43%;
+        width: 49%;
         position: absolute;
     }
 
@@ -89,6 +95,22 @@
         right: 29.5%;
         
         z-index: 2;
+    }
+
+    &__roulette.active {
+        animation-name: spin;
+        animation-duration: 8s;
+        animation-timing-function: cubic-bezier(0.005, 0.001, 1, 1);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotateZ(0deg);
+    }
+
+    100% {
+        transform: rotateZ(980deg);
     }
 }
 

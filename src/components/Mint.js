@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import NumberFormat from "react-number-format";
 import minting from "../images/svg/minting.svg";
 import Quantity from "./common/Quantity";
@@ -8,6 +8,9 @@ import mintTitle from "../images/svg/mint.svg";
 import token from "../images/svg/nft.svg";
 import background from "../images/svg/roulette.svg";
 import ball from "../images/ball.png";
+import { gsap } from "gsap/gsap-core";
+import { CSSPlugin } from "gsap/all";
+gsap.registerPlugin(CSSPlugin)
 
 export default function Mint() {
     const [qty, setQty] = useState(1);
@@ -15,6 +18,25 @@ export default function Mint() {
         value: "0.25 ETH",
         fee: "1 x 0.25"
     });
+    const rouletteElement = useRef(null);
+    // const angle = useRef(0);
+
+    function handleMint() {
+        // angle.current += (360) + 2880;
+        gsap.timeline({
+            defaults: {
+                duration: 8,
+                ease: "cubic-bezier(.5,.1,.15,1)"
+            },
+            onComplete: () => {
+                gsap.set(rouletteElement.current, {
+                    clearProps: "all"
+                })
+            }
+        }).to(rouletteElement.current, {
+            rotateZ: 3240
+        });
+    }
 
     return (
         <main className="mint container">
@@ -28,15 +50,17 @@ export default function Mint() {
                 <Quantity value={qty} setValue={setQty} />
                 <p className="mint__text">Max 20 per transaction</p>
                 <Price price={price} />
-                <button className="button button--mint mint__button">
+                <button className="button button--mint mint__button" onClick={handleMint}>
                     <img src={mintTitle} alt="Mint" className="button__icon" />
                 </button>
             </div>
             <div className="mint__column">
                 <div className="mint__roulette">
-                    <img src={background} alt="Roulette" className="mint__roulette-background" />
+                    <div className="mint__roulette-wrapper" ref={rouletteElement}>
+                        <img src={background} alt="Roulette" className="mint__roulette-background" />
+                        <img src={ball} alt="Ball" className="mint__roulette-ball" />
+                    </div>
                     <img src={token} alt="Token" className="mint__roulette-image" />
-                    <img src={ball} alt="Ball" className="mint__roulette-ball" />
                 </div>
             </div>
         </main>
