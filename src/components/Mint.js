@@ -25,7 +25,7 @@ export default function Mint() {
 
     function handleMint() {
         if (rotating) return;
-        angle.current += (Math.random() * 360) + 2880;
+        angle.current += (Math.random() * 960) + 2880;
         setRotating(true);
 
         gsap.timeline({
