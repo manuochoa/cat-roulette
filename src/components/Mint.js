@@ -10,6 +10,7 @@ import background from "../images/svg/roulette.svg";
 import ball from "../images/ball.png";
 import { gsap } from "gsap/gsap-core";
 import { CSSPlugin } from "gsap/all";
+
 gsap.registerPlugin(CSSPlugin)
 
 export default function Mint() {
@@ -60,7 +61,6 @@ export default function Mint() {
         function R(max, min) {
             return Math.random() * (max - min) + min
         };
-        
         //shake a bunch of times
         for (let i = 0; i < shakes; i++) {
             tl.to(ballElement.current, speed, { x: initProps.x + R(-4, 4), y: initProps.y + R(-2, 2), rotation: initProps.rotation + R(-5, 5) })
