@@ -19,6 +19,7 @@ export default function Mint() {
         fee: "1 x 0.25"
     });
     const [rotating, setRotating] = useState(false);
+    const ballWrapper = useRef(null);
     const ballElement = useRef(null);
     const rouletteBackground = useRef(null);
     const angle = useRef(0);
@@ -39,12 +40,36 @@ export default function Mint() {
                 });
                 setRotating(false);
             }
-        }).to(ballElement.current, {
-            rotateZ: angle.current
-        }, 0).to(rouletteBackground.current, {
-            rotateZ: 3240
-        }, 0);
+        })
+            .to(ballWrapper.current, {
+                rotateZ: angle.current
+            }, 0)
+            .add(shake(70, 0.1), 0)
+            .to(rouletteBackground.current, {
+                rotateZ: 3240
+            }, 0);
     }
+
+    function shake(shakes, speed) {
+        let tl = gsap.timeline().set(ballElement.current, { x: "+=0" });
+        let x = gsap.getProperty(ballElement.current, "x");
+        let y = gsap.getProperty(ballElement.current, "y");
+        let rotation = gsap.getProperty(ballElement.current, "rotation");
+        let initProps = { x, y, rotation }
+
+        function R(max, min) {
+            return Math.random() * (max - min) + min
+        };
+        
+        //shake a bunch of times
+        for (let i = 0; i < shakes; i++) {
+            tl.to(ballElement.current, speed, { x: initProps.x + R(-4, 4), y: initProps.y + R(-2, 2), rotation: initProps.rotation + R(-5, 5) })
+        }
+        //return to pre-shake values
+        tl.to(ballElement.current, speed, { x: initProps.x, y: initProps.y, scale: initProps.scale, rotation: initProps.rotation })
+
+        return tl;
+    };
 
     return (
         <main className="mint container">
@@ -64,8 +89,8 @@ export default function Mint() {
             </div>
             <div className="mint__column">
                 <div className="mint__roulette">
-                    <div className="mint__roulette-wrapper" ref={ballElement}>
-                        <img src={ball} alt="Ball" className="mint__roulette-ball" />
+                    <div className="mint__roulette-wrapper" ref={ballWrapper}>
+                        <img src={ball} alt="Ball" className="mint__roulette-ball" ref={ballElement} />
                     </div>
                     <img src={background} alt="Roulette" className="mint__roulette-background" ref={rouletteBackground} />
                     <img src={token} alt="Token" className="mint__roulette-image" />
