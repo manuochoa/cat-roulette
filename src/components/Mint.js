@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import NumberFormat from "react-number-format";
 import minting from "../images/svg/minting.svg";
 import Quantity from "./common/Quantity";
@@ -25,6 +25,7 @@ export default function Mint() {
     const rouletteBackground = useRef(null);
     const angle = useRef(0);
     const [token, setToken] = useState(tokensInitialState[0]);
+    const [finishSpin, setFinishSpin] = useState(false);
 
     function getRandomInt(max) {
         return Math.floor(Math.random() * max);
@@ -52,6 +53,7 @@ export default function Mint() {
                     clearProps: "all"
                 });
                 setRotating(false);
+                setFinishSpin(true);
             },
             onStart: () => {
                 create(50);
@@ -86,6 +88,21 @@ export default function Mint() {
         return tl;
     };
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+            if (finishSpin || rotating) return;
+            setToken(tokensInitialState[getRandomInt(4)]);
+        }, 500);
+
+        if (finishSpin) {
+            clearInterval(interval);
+        }
+
+        return () => {
+            clearInterval(interval);
+        }
+    }, [finishSpin, rotating]);
+
     return (
         <main className="mint container">
             <div className="mint__column">
@@ -108,9 +125,7 @@ export default function Mint() {
                         <img src={ball} alt="Ball" className="mint__roulette-ball" ref={ballElement} />
                     </div>
                     <img src={background} alt="Roulette" className="mint__roulette-background" ref={rouletteBackground} />
-                    <div className={"mint__roulette-image-wrapper" + (rotating ? " mint__roulette-image-wrapper--active" : "")}>
-                        <img src={token} alt="Token" className="mint__roulette-image" />
-                    </div>
+                    <img src={token} alt="Token" className="mint__roulette-image" />
                 </div>
             </div>
         </main>
