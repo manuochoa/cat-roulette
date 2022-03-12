@@ -32,7 +32,7 @@ export default function Mint() {
 
     function create(delay) {
         setToken(tokensInitialState[getRandomInt(4)]);
-        if (delay < 900) {
+        if (delay < 800) {
             setTimeout(create, Math.ceil(delay), delay / 0.9);
         }
     }
@@ -41,7 +41,7 @@ export default function Mint() {
         if (rotating) return;
         angle.current += (Math.random() * 960) + 2880;
         setRotating(true);
-        
+
         gsap.timeline({
             defaults: {
                 duration: 8,
@@ -108,7 +108,9 @@ export default function Mint() {
                         <img src={ball} alt="Ball" className="mint__roulette-ball" ref={ballElement} />
                     </div>
                     <img src={background} alt="Roulette" className="mint__roulette-background" ref={rouletteBackground} />
-                    <img src={token} alt="Token" className="mint__roulette-image" />
+                    <div className={"mint__roulette-image-wrapper" + (rotating ? " mint__roulette-image-wrapper--active" : "")}>
+                        <img src={token} alt="Token" className="mint__roulette-image" />
+                    </div>
                 </div>
             </div>
         </main>
