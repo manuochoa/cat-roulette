@@ -1,3 +1,9 @@
+import token1 from "../images/tokens/token1.png";
+import token2 from "../images/tokens/token2.png";
+import token3 from "../images/tokens/token3.png";
+import token4 from "../images/tokens/token4.png";
+import token5 from "../images/tokens/token5.png";
+
 export const proposalsArray = [
     {
         proposal: "1 Week",
@@ -24,3 +30,5 @@ export const proposalsArray = [
         id: 2
     },
 ];
+
+export const tokensInitialState = [token1, token2, token3, token4, token5];

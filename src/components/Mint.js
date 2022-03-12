@@ -5,11 +5,11 @@ import Quantity from "./common/Quantity";
 import Price from "./Price";
 
 import mintTitle from "../images/svg/mint.svg";
-import token from "../images/svg/nft.svg";
 import background from "../images/svg/roulette.svg";
 import ball from "../images/ball.png";
 import { gsap } from "gsap/gsap-core";
 import { CSSPlugin } from "gsap/all";
+import { tokensInitialState } from "../services/constants";
 
 gsap.registerPlugin(CSSPlugin)
 
@@ -24,12 +24,24 @@ export default function Mint() {
     const ballElement = useRef(null);
     const rouletteBackground = useRef(null);
     const angle = useRef(0);
+    const [token, setToken] = useState(tokensInitialState[0]);
+
+    function getRandomInt(max) {
+        return Math.floor(Math.random() * max);
+    }
+
+    function create(delay) {
+        setToken(tokensInitialState[getRandomInt(4)]);
+        if (delay < 900) {
+            setTimeout(create, Math.ceil(delay), delay / 0.9);
+        }
+    }
 
     function handleMint() {
         if (rotating) return;
         angle.current += (Math.random() * 960) + 2880;
         setRotating(true);
-
+        
         gsap.timeline({
             defaults: {
                 duration: 8,
@@ -40,6 +52,9 @@ export default function Mint() {
                     clearProps: "all"
                 });
                 setRotating(false);
+            },
+            onStart: () => {
+                create(50);
             }
         })
             .to(ballWrapper.current, {
