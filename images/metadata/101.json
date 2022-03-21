@@ -1,0 +1,38 @@
+{
+  "name": "#101",
+  "description": "The first 500 of adorable pixel cats on the BSC! Also doubles as your ticket to financial freedom!",
+  "external_url": "",
+  "image": "101.png",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Cyan"
+    },
+    {
+      "trait_type": "Fur Color",
+      "value": "Yellow"
+    },
+    {
+      "trait_type": "Accessories",
+      "value": "Red Scarf"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Squint"
+    },
+    {
+      "trait_type": "Whiskers",
+      "value": "Whiskers"
+    }
+  ],
+  "properties": {
+    "files": [
+      {
+        "uri": "101.png",
+        "type": "image/png"
+      }
+    ],
+    "creators": []
+  },
+  "compiler": "https://nft-generator.art"
+}
