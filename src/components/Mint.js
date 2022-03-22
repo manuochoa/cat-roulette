@@ -48,11 +48,13 @@ export default function Mint({
 
   async function handleMint() {
     setIsLoading(true);
-    // rotate();
+    rotate();
     let receipt = await mint(qty, walletType, walletProvider);
     setIsLoading(false);
     if (receipt) {
-      console.log(receipt, receipt.events[0].topics[3].toString());
+      let id = Number(receipt.events[0].topics[3]);
+      console.log(receipt, id);
+      setToken(`https://flokigainz.com/api/cat-roulette/images/${id}.png`);
     }
     gsap.set(rouletteBackground.current, {
       clearProps: "all",
@@ -60,7 +62,7 @@ export default function Mint({
   }
 
   function rotate() {
-    if (!isLoading) return;
+    // if (!isLoading) return;
     console.log("rotating", isLoading);
     angle.current += Math.random() * 960 + 2880;
     // setRotating(true);
@@ -68,21 +70,13 @@ export default function Mint({
     gsap
       .timeline({
         defaults: {
-          duration: 8,
+          duration: 20,
           ease: "cubic-bezier(.5,.1,.15,.1)",
         },
         onComplete: () => {
           gsap.set(rouletteBackground.current, {
             clearProps: "all",
           });
-          if (isLoading) {
-            rotate();
-          } else {
-            console.log("finish");
-            // setRotating(false);
-            // setFinishSpin(true);
-            console.log(isLoading);
-          }
         },
         onStart: () => {
           //   create(50);
@@ -155,13 +149,6 @@ export default function Mint({
     //   clearInterval(interval);
     // };
   }, [finishSpin, rotating]);
-
-  useEffect(() => {
-    if (isLoading) {
-      rotate();
-      console.log("useEffect");
-    }
-  }, [isLoading]);
 
   useEffect(() => {
     getSupply();
