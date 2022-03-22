@@ -55,6 +55,8 @@ export default function Mint({
       let id = Number(receipt.events[0].topics[3]);
       console.log(receipt, id);
       setToken(`https://flokigainz.com/api/cat-roulette/images/${id}.png`);
+    } else {
+      setToken(tokensInitialState[1]);
     }
     gsap.set(rouletteBackground.current, {
       clearProps: "all",

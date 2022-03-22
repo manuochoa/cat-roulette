@@ -49,19 +49,20 @@ const paymentAmount = async (amount) => {
   let price = 0;
 
   for (let i = 0; i < amount; i++) {
-    price += Number(getPrice(Number(supply) + i));
+    price += getPrice(Number(supply) + i);
   }
+  console.log(price);
 
-  return ethers.utils.parseUnits(price.toString(), "ether");
+  return price.toString();
 };
 
 const getPrice = (_tokenId) => {
   if (_tokenId <= 150) {
-    return "0.15";
+    return 150000000000000000;
   } else if (_tokenId <= 300) {
-    return "0.2";
+    return 200000000000000000;
   } else {
-    return "0.25";
+    return 250000000000000000;
   }
 };
 
