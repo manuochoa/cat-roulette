@@ -57,11 +57,11 @@ const paymentAmount = async (amount) => {
 
 const getPrice = (_tokenId) => {
   if (_tokenId <= 150) {
-    return 0.15;
+    return "0.15";
   } else if (_tokenId <= 300) {
-    return 0.2;
+    return "0.2";
   } else {
-    return 0.25;
+    return "0.25";
   }
 };
 
