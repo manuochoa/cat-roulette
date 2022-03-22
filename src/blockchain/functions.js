@@ -40,7 +40,7 @@ export const mint = async (_amount, walletType, walletProvider) => {
     if (error.data) {
       window.alert(error.data.message);
     }
-    return error;
+    console.log(error);
   }
 };
 
@@ -49,7 +49,7 @@ const paymentAmount = async (amount) => {
   let price = 0;
 
   for (let i = 0; i < amount; i++) {
-    price += getPrice(Number(supply) + i);
+    price += Number(getPrice(Number(supply) + i));
   }
 
   return ethers.utils.parseUnits(price.toString(), "ether");
